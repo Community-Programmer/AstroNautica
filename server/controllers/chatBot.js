@@ -4,11 +4,11 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 const MODEL_NAME = "gemini-pro";
-const GEMINI_API_KEY = process.env.API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 
 export async function runChat(userInput) {
-    const genAI = new GoogleGenerativeAI('AIzaSyA1UTZBEtdxZCHfZ6CLrPGAItwDhseXzBQ');
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
   
     const generationConfig = {
