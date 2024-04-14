@@ -85,7 +85,10 @@ const Home = () => {
       </h1>
 
       <div className="apod_Container text-light font-weight-normal">
-        <img src={apodData.hdurl} alt="apod" />
+        {apodData.hdurl ? <img src={apodData.hdurl} alt="apod" /> : <iframe
+          src={apodData.url}>
+        </iframe>}
+
         <div className="apod_info">
           <h2>{apodData.title}</h2>
           <p>{apodData.explanation}</p>
@@ -101,11 +104,11 @@ const Home = () => {
       </div>
 
       <div className="chatBotBtn">
-      <button  onClick={() => setShowChatbot(!showChatbot)}><img src = {bot} alt="bot"/></button>
+        <button onClick={() => setShowChatbot(!showChatbot)}><img src={bot} alt="bot" /></button>
       </div>
-      {showChatbot && <ChatBot/>}
+      {showChatbot && <ChatBot />}
 
-    
+
     </>
   );
 };
