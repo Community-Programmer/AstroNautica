@@ -1,4 +1,6 @@
 import axios from "axios";
+import dotenv from 'dotenv'
+dotenv.config();
 
 
 const NASA_API_KEY = process.env.NASA_API_KEY;
@@ -7,7 +9,7 @@ export const apod = async (req, res) => {
     try {
         const { count, date, start_date, end_date } = req.body;
         
-        let url = `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`;
+        let url = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
 
         if (count) {
             url += `&count=${count}`;
