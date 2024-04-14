@@ -8,10 +8,13 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ChatBot from "../../components/ChatBot/ChatBot";
+import bot from '../../assests/bot.jpeg'
 
 const Home = () => {
   const [apodData, setApodData] = useState({});
   const [apodImages, setApodImages] = useState([]);
+  const [showChatbot, setShowChatbot] = useState(false);
 
   const settings = {
     className: "center",
@@ -92,6 +95,13 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className="chatBotBtn">
+      <button  onClick={() => setShowChatbot(!showChatbot)}><img src = {bot} alt="bot"/></button>
+      </div>
+      {showChatbot && <ChatBot/>}
+
+    
     </>
   );
 };
