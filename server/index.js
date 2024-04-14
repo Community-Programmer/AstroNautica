@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 import blogRoute from './routes/blogRoute.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { runChat } from './controllers/chatBot.js';
 
 dotenv.config();
 
@@ -38,6 +39,23 @@ app.get('/',(req,res)=>{
 });
 
 connectDb();
+
+
+app.post('/chat', async (req, res) => {
+    try {
+      const userInput = req.body?.userInput;
+      console.log('incoming /chat req', userInput)
+      if (!userInput) {
+        return res.status(400).json({ error: 'Invalid request body' });
+      }
+  
+      const response = await runChat(userInput);
+      res.json({ text: response });
+    } catch (error) {
+      console.error('Error in chat endpoint:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 app.listen(PORT, ()=>{
     console.log(`Server Started at Port ${PORT}`)
